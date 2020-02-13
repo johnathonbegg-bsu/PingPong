@@ -141,11 +141,20 @@ public class PingPong {
 
 	private void serverPlayPingPong(Socket sock) throws IOException, ClassNotFoundException {
 		while (running){
-			Ball ball = (Ball) oin.readObject();
-			System.out.println("ping");
+			if(sender){
+				Ball ball = new Ball();
+				oout.writeObject(ball);
+				System.out.println("ping");
+				
+				
+			}else{
+				Ball ball = (Ball) oin.readObject();
+				//System.out.println("ping");
 
-			oout.writeObject(new Ball());
-			System.out.println("pong");
+				oout.writeObject(new Ball());
+				System.out.println("pong");
+			}
+			
 		}
 		
 
@@ -158,14 +167,19 @@ public class PingPong {
 		while (running) {
 			try {
 
-				System.out.println("sending ball");
-				oout.writeObject(new Ball());
-				// oout.flush();
+				if(sender){
+					Ball ball = new Ball();
+					oout.writeObject(ball);
+					System.out.println("ping");
+					
+					
+				}else{
+					Ball ball = (Ball) oin.readObject();
+					//System.out.println("ping");
 
-				System.out.println("waiting for ball");
-				Ball ball = (Ball) oin.readObject();
-
-				System.out.println("ball recieved");
+					oout.writeObject(new Ball());
+					System.out.println("pong");
+				}
 
 				// sock.close();
 			} catch (IOException e) {
