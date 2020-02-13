@@ -1,11 +1,8 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -28,7 +25,6 @@ public class PingPong {
 	public static void main(String[] args)
 	{
 		System.out.println("java PingPong <client|server> <serverHost> <port#>");
-		String type = args[0];
 		String host = args[1];
 		int port = Integer.parseInt(args[2]);
 		
